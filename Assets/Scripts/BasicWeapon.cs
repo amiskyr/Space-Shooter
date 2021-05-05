@@ -28,12 +28,12 @@ public class BasicWeapon : MonoBehaviour
         {
             nextFire = Time.time + fireRate;
             GameObject bullet = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolder.position, weaponHolder.rotation);
-            if (bullet != null)
-            {
-                bullet.transform.position = weaponHolder.transform.position;
-                bullet.transform.rotation = weaponHolder.transform.rotation;
-                bullet.SetActive(true);
-            }
+            //if (bullet != null)
+            //{
+            //    bullet.transform.position = weaponHolder.transform.position;
+            //    bullet.transform.rotation = weaponHolder.transform.rotation;
+            //    bullet.SetActive(true);
+            //}
         }
     }
 }

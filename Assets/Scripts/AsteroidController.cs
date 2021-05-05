@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomRotator : MonoBehaviour
+public class AsteroidController : MonoBehaviour
 {
     private Rigidbody rb;
     
-    public float tumble;
+    public float tumble = 1f;
+    public float movementSpeed = 1f;
 
     private void Awake()
     {
@@ -16,11 +17,10 @@ public class RandomRotator : MonoBehaviour
     void Start()
     {
         rb.angularVelocity = Random.insideUnitSphere * tumble;
+        rb.velocity = -transform.forward * movementSpeed;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
     }
 }

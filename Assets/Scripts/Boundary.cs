@@ -24,5 +24,9 @@ public class Boundary : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
         }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.SetActive(false);
+        }
     }
 }

@@ -11,7 +11,6 @@ public class MovementController : MonoBehaviour
     private float xMin, xMax, zMin, zMax;
 
     private Collider col;
-    private Camera cam;
     private Vector3 pos;
 
     private bool isMoving;
@@ -25,7 +24,6 @@ public class MovementController : MonoBehaviour
     private void Awake()
     {
         mainCamera = Camera.main;
-        cam = Camera.main;
         playerController = GetComponent<PlayerController>();
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();

@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 spawnValue;
+    private Vector2 screenBounds;
+    private Camera mainCamera;
+
+    public List<string> enemyObjectTags;
+
+    private void Awake()
     {
-        
+        mainCamera = Camera.main;
+        screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
     }
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        SpawnWaves();
+    }
+
+    private void SpawnWaves()
+    {
+        Vector3 spawnPosition = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), 0f, screenBounds.y / 2);
+        Quaternion spawnRotation = Quaternion.identity;
+
+        GameObject hazard = ObjectPooler.Instance.GetPooledObject("Asteroid", spawnPosition, spawnRotation);
     }
 }
