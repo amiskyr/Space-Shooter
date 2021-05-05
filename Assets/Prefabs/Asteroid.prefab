@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tumble: 5
-  movementSpeed: 0.5
+  movementSpeed: 0.25
 --- !u!114 &3859412298752158503
 MonoBehaviour:
   m_ObjectHideFlags: 0

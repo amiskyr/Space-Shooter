@@ -21,10 +21,9 @@ public class DestroyByContact : MonoBehaviour
             {
                 explosion.transform.position = transform.position;
                 explosion.GetComponent<ParticleSystem>().Play();
-                bool vfxComplete = explosion.GetComponent<ParticleSystem>().isStopped;
                 other.gameObject.SetActive(false);
-                if(vfxComplete)
-                    gameObject.SetActive(false);
+                gameObject.SetActive(false);
+                FindObjectOfType<AudioManager>().GetComponent<AudioManager>().PlayAudio(0);
             }
             else
             {
@@ -35,15 +34,12 @@ public class DestroyByContact : MonoBehaviour
         {
             playerExplosion.transform.position = other.transform.position;
             playerExplosion.GetComponent<ParticleSystem>().Play();
-            bool vfx1Complete = playerExplosion.GetComponent<ParticleSystem>().isStopped;
-            if(vfx1Complete)
-                other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
 
             explosion.transform.position = transform.position;
             explosion.GetComponent<ParticleSystem>().Play();
-            bool vfx2Complete = explosion.GetComponent<ParticleSystem>().isStopped;
-            if(vfx2Complete)
-                gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            FindObjectOfType<AudioManager>().GetComponent<AudioManager>().PlayAudio(0);
 
         }
     }

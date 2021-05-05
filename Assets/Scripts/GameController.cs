@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
     private Vector2 screenBounds;
     private Camera mainCamera;
 
+    public int hazardCount;
+    public float spawnWait, startWait, wavePeriod;
+
     public List<string> enemyObjectTags;
 
     private void Awake()
@@ -18,14 +21,30 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        SpawnWaves();
+        Invoke("Waves", 1f);
     }
 
-    private void SpawnWaves()
+    private IEnumerator SpawnWaves()
     {
-        Vector3 spawnPosition = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), 0f, screenBounds.y / 2);
-        Quaternion spawnRotation = Quaternion.identity;
+        yield return new WaitForSeconds(startWait);
 
-        GameObject hazard = ObjectPooler.Instance.GetPooledObject("Asteroid", spawnPosition, spawnRotation);
+        while(true)
+        {
+            for(int i=0; i<hazardCount; i++)
+            {
+                Vector3 spawnPosition = new Vector3(Random.Range(-screenBounds.x, screenBounds.x), 0f, screenBounds.y / 2);
+                Quaternion spawnRotation = Quaternion.identity;
+            
+                GameObject hazard = ObjectPooler.Instance.GetPooledObject(enemyObjectTags[0], spawnPosition, spawnRotation);
+
+                yield return new WaitForSeconds(spawnWait);
+            }
+            yield return new WaitForSeconds(wavePeriod); 
+        }
+    }
+
+    public void Waves()
+    {
+        StartCoroutine("SpawnWaves");
     }
 }
