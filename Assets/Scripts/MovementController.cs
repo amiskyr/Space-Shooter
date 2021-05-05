@@ -12,7 +12,6 @@ public class MovementController : MonoBehaviour
     public float movementSpeed = 1f;
     public float tilt;
 
-
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -30,6 +29,11 @@ public class MovementController : MonoBehaviour
     }
 
     private void FixedUpdate()
+    {
+        MoveByKey();
+    }
+
+    private void MoveByKey()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
