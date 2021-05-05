@@ -4,32 +4,53 @@ using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler SharedInstance;
-    public List<GameObject> pooledObjects;
-    public GameObject objectToPool;
-    public int amountToPool;
+    [System.Serializable]
+    public class Pool
+    {
+        public string objectTag;
+        public GameObject objectPrefab;
+        public int amountToPool;
+    }
+
+    public static ObjectPooler Instance;
+    public List<Pool> pools;
+    public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     private void Awake()
     {
-        SharedInstance = this;
-        pooledObjects = new List<GameObject>();
+        Instance = this;
 
-        for(int i=0; i<amountToPool; i++)
+        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        foreach(Pool pool in pools)
         {
-            GameObject obj = (GameObject)Instantiate(objectToPool);
-            obj.SetActive(false);
-            pooledObjects.Add(obj);
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for(int i=0; i<pool.amountToPool; i++)
+            {
+                GameObject obj = Instantiate(pool.objectPrefab);
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+            poolDictionary.Add(pool.objectTag, objectPool);
         }
     }
-    public GameObject GetPooledObject()
+    public GameObject GetPooledObject(string reqTag, Vector3 reqPosition, Quaternion reqRotation)
     {
-        for(int i=0; i<pooledObjects.Count; i++)
+        if(!poolDictionary.ContainsKey(reqTag))
         {
-            if(!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i];
-            }
+            Debug.LogWarning($"Pool with tag {reqTag} doesn't exist");
+            return null;
         }
-        return null;
+        GameObject objectToSpawn = poolDictionary[reqTag].Dequeue();
+
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = reqPosition;
+        objectToSpawn.transform.rotation = reqRotation;
+
+        poolDictionary[reqTag].Enqueue(objectToSpawn);
+
+        Debug.Log("Returned object to pool with tag: " + reqTag);
+
+        return objectToSpawn;
     }
 }

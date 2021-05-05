@@ -20,6 +20,8 @@ public class MovementController : MonoBehaviour
     public float movementSpeed = 1f;
     public float tilt;
 
+    public InputType inputType;
+
     private void Awake()
     {
         mainCamera = Camera.main;
@@ -45,8 +47,14 @@ public class MovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveByTouch();
-        MoveByKey();
+        if(inputType == InputType.Keyboard)
+        {
+            MoveByKey();
+        }
+        else
+        {
+            MoveByTouch();
+        }
     }
 
     private void MoveByKey()

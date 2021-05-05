@@ -17,3 +17,9 @@ public enum WeaponType
     StandardMissile,
     HomingMissile
 }
+
+public enum InputType
+{
+    Touch,
+    Keyboard
+}
