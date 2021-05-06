@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicWeapon : MonoBehaviour
+public class WeaponHandler : MonoBehaviour
 {
     public Transform weaponHolderXLeft;
     public Transform weaponHolderLeft;
@@ -13,9 +13,15 @@ public class BasicWeapon : MonoBehaviour
     public float interval = 0.025f;
 
     public WeaponUser user;
-    public float bulletRecoveryTime;
+    public float missileRecoveryTime = 2.5f;
+    public float bulletRecoveryTime = 0.5f;
     public string bulletTag;
-    
+    public string torpedoTag;
+    public string missileTag;
+    public string laserTag;
+
+    public GameObject laserBeamObject;
+
     private Vector2 screenBounds;
     private float nextFire;
 
@@ -52,11 +58,11 @@ public class BasicWeapon : MonoBehaviour
                 case WeaponType.SpreadShot:
                     SpreadShotAttack();
                     break;
-                case WeaponType.StraightMissile:
-                    StraightMissileAttack();
+                case WeaponType.Torpedo:
+                    TorpedoAttack();
                     break;
-                case WeaponType.HomingMissile:
-                    HomingMissileAttack();
+                case WeaponType.Missile:
+                    MissileAttack();
                     break;
                 case WeaponType.Laser:
                     LaserAttack();
@@ -65,7 +71,6 @@ public class BasicWeapon : MonoBehaviour
                     SingleShotAttack();
                     break;
             }
-
         }
     }
     public void ShootAutomatically()
@@ -153,19 +158,45 @@ public class BasicWeapon : MonoBehaviour
         bulletXR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
     }
 
-    public void StraightMissileAttack()
+    public void TorpedoAttack()
     {
+        nextFire = Time.time + missileRecoveryTime;
 
+        GameObject torpedoL = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderLeft.position, weaponHolderLeft.rotation);
+        GameObject torpedoR = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderRight.position, weaponHolderRight.rotation);
+
+        torpedoL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        torpedoR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
     }
 
-    public void HomingMissileAttack()
+    public void MissileAttack()
     {
+        nextFire = Time.time + missileRecoveryTime;
 
+        GameObject missileL = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderLeft.position, tiltedL);
+        GameObject missileR = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderRight.position, tiltedR);
+
+        missileL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        missileR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
     }
 
     public void LaserAttack()
     {
+        //SingleShotAttack();
 
+        MissileAttack();
+
+        //TorpedoAttack();
+
+        //GameObject laserBeam = ObjectPooler.Instance.GetPooledObject(laserTag, weaponHolderMid.position, weaponHolderMid.transform.rotation);
+        //laserBeam.transform.localScale = new Vector3(1f, 1f, 20f);
+        laserBeamObject.transform.localScale = new Vector3(1f, 1f, 20f);
+
+        //RaycastHit hit;
+        //if(Physics.Raycast(transform.position, transform.forward, out hit, 100f))
+        //{
+        //    Debug.Log($"Firing Laser distance: {hit.distance}");
+        //}
     }
 
     Quaternion GenerateNewQuaternion(Quaternion refRotation, float x, float y, float z)

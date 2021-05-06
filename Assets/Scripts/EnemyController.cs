@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
     private ParticleSystem playerExplosion;
     private GameController gameController;
     private AudioManager audioManager;
-    private BasicWeapon weapon;
+    private WeaponHandler weapon;
 
     public int health;
     public float shootingInterval;
@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyType == EnemyType.SpaceShip)
         {
-            weapon = GetComponent<BasicWeapon>();
+            weapon = GetComponent<WeaponHandler>();
             InvokeRepeating("FireWeapon", weapon.bulletRecoveryTime, shootingInterval);
         }
     }

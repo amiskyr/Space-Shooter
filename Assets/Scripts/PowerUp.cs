@@ -19,7 +19,7 @@ public class PowerUp : MonoBehaviour
             PlayerController tempPC = other.GetComponent<PlayerController>();
             tempPC.bulletsPowerUp = true;
             tempPC.obtainedPowerUp = weaponPowerUp;
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
             Destroy(gameObject, 1f);
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
 
-    private BasicWeapon weapon;
+    private WeaponHandler weapon;
     private PlayerMovementController movementController;
 
     private GameController gameController;
@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        weapon = GetComponent<BasicWeapon>();
+        weapon = GetComponent<WeaponHandler>();
         movementController = GetComponent<PlayerMovementController>();
         gameController = GameController.Instance;
         audioManager = AudioManager.Instance;
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            weapon.ShootOnClick(WeaponType.SingleShot);
+            weapon.ShootOnClick(WeaponType.Laser);
         }
     }
 

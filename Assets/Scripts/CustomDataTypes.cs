@@ -32,7 +32,7 @@ public enum WeaponType
     TripleShot,
     PentaShot,
     SpreadShot,
-    StraightMissile,
-    HomingMissile,
+    Torpedo,
+    Missile,
     Laser
 }
