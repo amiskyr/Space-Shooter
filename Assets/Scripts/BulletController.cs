@@ -27,12 +27,10 @@ public class BulletController : MonoBehaviour
         if (shotBy == WeaponUser.Player)
         {
             rb.velocity = transform.forward * movementSpeed;
-            //Debug.LogWarning("Bullet moving forward.");
         }
         else
         {
             rb.velocity = transform.forward * (movementSpeed);
-            //Debug.LogWarning("Bullet moving backward.");
         }
     }
 }

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 5814730095674468776}
   - component: {fileID: 960204839549836644}
   m_Layer: 0
-  m_Name: EnemyShip3
+  m_Name: EnemyShip4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,6 +196,7 @@ MonoBehaviour:
   weaponHolderMid: {fileID: 5814730095240401917}
   weaponHolderRight: {fileID: 2308553075793665941}
   weaponHolderXRight: {fileID: 8329277492779715697}
+  interval: 0.025
   user: 0
   bulletRecoveryTime: 0.5
   bulletTag: Bullet2
@@ -443,7 +444,7 @@ PrefabInstance:
     - target: {fileID: 2385482, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: fa8aca7c3b45b954ea6185be26c86a33, type: 2}
+      objectReference: {fileID: 2100000, guid: 2cabc6244dc687a4d89b3973eb70ccc3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81a45116981bb514c866bab4841bb1fe, type: 3}
 --- !u!4 &5814730094695891423 stripped

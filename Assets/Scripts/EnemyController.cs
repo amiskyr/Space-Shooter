@@ -40,7 +40,7 @@ public class EnemyController : MonoBehaviour
     {
         if(other.gameObject.tag.Equals("Bullet") && other.gameObject.GetComponent<BulletController>().shotBy == WeaponUser.Player)
         {
-            if(health < 0)
+            if(health <= 0)
             {
                 generalexplosion.transform.position = transform.position;
                 generalexplosion.Play();
@@ -59,6 +59,7 @@ public class EnemyController : MonoBehaviour
         }
         if(other.gameObject.tag.Equals("Player"))
         {
+            gameController.isGameOver = true;
             playerExplosion.transform.position = other.transform.position;
             playerExplosion.Play();
 
@@ -69,6 +70,8 @@ public class EnemyController : MonoBehaviour
             
             audioManager.PlayAudio(0);
 
+            GameOverPrompt();
+
             gameObject.SetActive(false);
         }
     }
@@ -76,7 +79,7 @@ public class EnemyController : MonoBehaviour
     private void UpdateScore()
     {
         gameController.score += 10;
-        gameController.scoretext.text = $"Score: {gameController.score}";
+        gameController.scoreText.text = $"Score: {gameController.score}";
     }
 
     private void FireWeapon()
@@ -85,5 +88,10 @@ public class EnemyController : MonoBehaviour
         {
             weapon.ShootAutomatically();
         }
+    }
+
+    private void GameOverPrompt()
+    {
+        gameController.GameOverPrompt();
     }
 }

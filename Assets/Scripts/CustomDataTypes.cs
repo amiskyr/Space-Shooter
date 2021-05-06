@@ -7,17 +7,6 @@ public interface IWeapon
     void Shoot();
 }
 
-public enum WeaponType
-{
-    SemiAutomatic,
-    FullyAutomatic,
-    BurstShot,
-    SpreadShot,
-    Laser,
-    StandardMissile,
-    HomingMissile
-}
-
 public enum InputType
 {
     Touch,
@@ -35,4 +24,15 @@ public enum WeaponUser
 {
     Enemy,
     Player
+}
+
+public enum WeaponType
+{
+    SingleShot,
+    TripleShot,
+    PentaShot,
+    SpreadShot,
+    StraightMissile,
+    HomingMissile,
+    Laser
 }
