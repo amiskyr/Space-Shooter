@@ -20,8 +20,6 @@ public class WeaponHandler : MonoBehaviour
     public string missileTag;
     public string laserTag;
 
-    public GameObject laserBeamObject;
-
     private Vector2 screenBounds;
     private float nextFire;
 
@@ -166,7 +164,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void TorpedoAttack(WeaponUser currentUser)
     {
-        nextFire = Time.time + missileRecoveryTime;
+        nextFire = Time.time + missileRecoveryTime / 2;
 
         GameObject torpedoL = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderLeft.position, weaponHolderLeft.rotation);
         GameObject torpedoR = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderRight.position, weaponHolderRight.rotation);
@@ -177,7 +175,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void MissileAttack(WeaponUser currentUser)
     {
-        nextFire = Time.time + missileRecoveryTime;
+        nextFire = Time.time + missileRecoveryTime / 2;
 
         GameObject missileL = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderLeft.position, tiltedL);
         GameObject missileR = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderRight.position, tiltedR);

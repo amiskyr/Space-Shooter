@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            weapon.ShootOnClick(WeaponType.Missile);
+            weapon.ShootOnClick(WeaponType.SingleShot);
         }
     }
 

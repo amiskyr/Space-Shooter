@@ -66,6 +66,6 @@ public class EnemyShipMovementController : MonoBehaviour
 
     private void FollowPlayer()
     {
-        rb.velocity = player.transform.position * movementSpeed;
+        rb.velocity = player.transform.position * playerFollowingSpeed;
     }
 }
