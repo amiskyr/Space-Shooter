@@ -157,5 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   damage: 5
-  movementSpeed: 2.5
   shotBy: 1
+  movementSpeed: 2.5
+  isHoming: 0
+  rotateSpeed: 0
+  detectionRange: 0

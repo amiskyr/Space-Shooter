@@ -47,53 +47,73 @@ public class WeaponHandler : MonoBehaviour
             switch (currentWeapon)
             {
                 case WeaponType.SingleShot:
-                    SingleShotAttack();
+                    SingleShotAttack(WeaponUser.Player);
                     break;
                 case WeaponType.TripleShot:
-                    TripleShotAttack();
+                    TripleShotAttack(WeaponUser.Player);
                     break;
                 case WeaponType.PentaShot:
-                    PentaShotAttack();
+                    PentaShotAttack(WeaponUser.Player);
                     break;
                 case WeaponType.SpreadShot:
-                    SpreadShotAttack();
+                    SpreadShotAttack(WeaponUser.Player);
                     break;
                 case WeaponType.Torpedo:
-                    TorpedoAttack();
+                    TorpedoAttack(WeaponUser.Player);
                     break;
                 case WeaponType.Missile:
-                    MissileAttack();
+                    MissileAttack(WeaponUser.Player);
                     break;
                 case WeaponType.Laser:
-                    LaserAttack();
+                    LaserAttack(WeaponUser.Player);
                     break;
                 default:
-                    SingleShotAttack();
+                    SingleShotAttack(WeaponUser.Player);
                     break;
             }
         }
     }
-    public void ShootAutomatically()
+    public void ShootAutomatically(WeaponType currentWeapon)
     {
         if (transform.position.z <= -screenBounds.y/2)
         {
             return;
         }
-
-        nextFire = Time.time + bulletRecoveryTime;
-        GameObject bullet = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderMid.position, weaponHolderMid.rotation);
-        bullet.GetComponent<BulletController>().MoveBullet(WeaponUser.Enemy);
+        switch (currentWeapon)
+        {
+            case WeaponType.SingleShot:
+                SingleShotAttack(WeaponUser.Enemy);
+                break;
+            case WeaponType.TripleShot:
+                TripleShotAttack(WeaponUser.Enemy);
+                break;
+            case WeaponType.PentaShot:
+                PentaShotAttack(WeaponUser.Enemy);
+                break;
+            case WeaponType.SpreadShot:
+                SpreadShotAttack(WeaponUser.Enemy);
+                break;
+            case WeaponType.Torpedo:
+                TorpedoAttack(WeaponUser.Enemy);
+                break;
+            case WeaponType.Missile:
+                MissileAttack(WeaponUser.Enemy);
+                break;
+            default:
+                SingleShotAttack(WeaponUser.Enemy);
+                break;
+        }
     }
 
-    public void SingleShotAttack()
+    public void SingleShotAttack(WeaponUser currentUser)
     {
         nextFire = Time.time + bulletRecoveryTime;
 
         GameObject bullet = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderMid.position, weaponHolderMid.rotation);
-        bullet.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        bullet.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void TripleShotAttack()
+    public void TripleShotAttack(WeaponUser currentUser)
     {
         nextFire = Time.time + bulletRecoveryTime;
 
@@ -101,30 +121,16 @@ public class WeaponHandler : MonoBehaviour
         GameObject bulletM = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderMid.position, weaponHolderMid.rotation);
         GameObject bulletR = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderRight.position, weaponHolderRight.rotation);
         
-        bulletL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletM.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        bulletL.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletM.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletR.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void PentaShotAttack()
+    public void PentaShotAttack(WeaponUser currentUser)
     {
         nextFire = Time.time + bulletRecoveryTime;
 
         float offset = 0f;
-
-        //offset = Mathf.Clamp(offset, 0.05f, 0.05f);
-
-        //if(offset == 0.05f)
-        //{
-        //    interval = -1 * interval;
-        //}
-        //else if(offset == -0.05f)
-        //{
-        //    interval = -1 * interval;
-        //}
-
-        //offset += interval;
-        Debug.Log(offset);
 
         Vector3 offsetPos = new Vector3(offset, 0f, 0f);
 
@@ -134,14 +140,14 @@ public class WeaponHandler : MonoBehaviour
         GameObject bulletR = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderRight.position + offsetPos, weaponHolderRight.rotation);
         GameObject bulletXR = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderXRight.position + offsetPos, weaponHolderXRight.rotation);
 
-        bulletXL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletM.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletXR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        bulletXL.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletL.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletM.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletR.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletXR.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void SpreadShotAttack()
+    public void SpreadShotAttack(WeaponUser currentUser)
     {
         nextFire = Time.time + bulletRecoveryTime;
         
@@ -151,52 +157,43 @@ public class WeaponHandler : MonoBehaviour
         GameObject bulletR = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderRight.position, tiltedR);
         GameObject bulletXR = ObjectPooler.Instance.GetPooledObject(bulletTag, weaponHolderXRight.position, tiltedXR);
 
-        bulletXL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletM.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        bulletXR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        bulletXL.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletL.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletM.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletR.GetComponent<BulletController>().MoveBullet(currentUser);
+        bulletXR.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void TorpedoAttack()
+    public void TorpedoAttack(WeaponUser currentUser)
     {
         nextFire = Time.time + missileRecoveryTime;
 
         GameObject torpedoL = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderLeft.position, weaponHolderLeft.rotation);
         GameObject torpedoR = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderRight.position, weaponHolderRight.rotation);
 
-        torpedoL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        torpedoR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        torpedoL.GetComponent<BulletController>().MoveBullet(currentUser);
+        torpedoR.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void MissileAttack()
+    public void MissileAttack(WeaponUser currentUser)
     {
         nextFire = Time.time + missileRecoveryTime;
 
         GameObject missileL = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderLeft.position, tiltedL);
         GameObject missileR = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderRight.position, tiltedR);
 
-        missileL.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
-        missileR.GetComponent<BulletController>().MoveBullet(WeaponUser.Player);
+        missileL.GetComponent<BulletController>().MoveBullet(currentUser);
+        missileR.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void LaserAttack()
+    public void LaserAttack(WeaponUser currentuser
+        )
     {
-        //SingleShotAttack();
-
-        MissileAttack();
-
-        //TorpedoAttack();
-
-        //GameObject laserBeam = ObjectPooler.Instance.GetPooledObject(laserTag, weaponHolderMid.position, weaponHolderMid.transform.rotation);
-        //laserBeam.transform.localScale = new Vector3(1f, 1f, 20f);
-        laserBeamObject.transform.localScale = new Vector3(1f, 1f, 20f);
-
-        //RaycastHit hit;
-        //if(Physics.Raycast(transform.position, transform.forward, out hit, 100f))
-        //{
-        //    Debug.Log($"Firing Laser distance: {hit.distance}");
-        //}
+        GameObject laserBeam = ObjectPooler.Instance.GetPooledObject(laserTag, weaponHolderMid.position, weaponHolderMid.transform.rotation);
+        
+        laserBeam.transform.position = weaponHolderMid.position;
+        laserBeam.transform.localScale = new Vector3(1f, 1f, 20f);
+        laserBeam.transform.GetChild(0).GetComponent<LaserBeamController>().FireLaserAttack(WeaponUser.Player);
     }
 
     Quaternion GenerateNewQuaternion(Quaternion refRotation, float x, float y, float z)

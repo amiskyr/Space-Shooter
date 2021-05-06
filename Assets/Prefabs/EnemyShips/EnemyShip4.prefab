@@ -103,7 +103,6 @@ GameObject:
   - component: {fileID: 5814730095674468772}
   - component: {fileID: 5814730095674468774}
   - component: {fileID: 5814730095674468775}
-  - component: {fileID: 5814730095674468776}
   - component: {fileID: 960204839549836644}
   m_Layer: 0
   m_Name: EnemyShip4
@@ -179,6 +178,7 @@ MonoBehaviour:
   health: 10
   shootingInterval: 0.25
   enemyType: 1
+  currentWeapon: 0
 --- !u!114 &5814730095674468775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,26 +198,13 @@ MonoBehaviour:
   weaponHolderXRight: {fileID: 8329277492779715697}
   interval: 0.025
   user: 0
+  missileRecoveryTime: 2.5
   bulletRecoveryTime: 0.5
   bulletTag: Bullet2
---- !u!114 &5814730095674468776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5814730095674468769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e8f2830227fca4fb2215e212b55b8f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWait: {x: 0.5, y: 1}
-  maneuverTime: {x: 1, y: 2}
-  maneuverWait: {x: 1, y: 2}
-  dodge: 0.5
-  smoothing: 7.5
-  tilt: 30
+  torpedoTag: 
+  missileTag: 
+  laserTag: 
+  laserBeamObject: {fileID: 0}
 --- !u!114 &960204839549836644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +218,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.5
+  orbitRadius: 1
+  revolutionSpeed: 2.5
+  playerFollowingSpeed: 2.5
+  movementPattern: 1
 --- !u!1 &7112688216651370691
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,3 +36,10 @@ public enum WeaponType
     Missile,
     Laser
 }
+
+public enum EnemyMovementType
+{
+    FollowPlayer,
+    OrbitPlayer,
+    MoveForward
+}

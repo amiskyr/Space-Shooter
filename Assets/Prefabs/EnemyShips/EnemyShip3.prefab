@@ -103,8 +103,8 @@ GameObject:
   - component: {fileID: 5814730095674468772}
   - component: {fileID: 5814730095674468774}
   - component: {fileID: 5814730095674468775}
-  - component: {fileID: 5814730095674468776}
   - component: {fileID: 960204839549836644}
+  - component: {fileID: 2052671341765665894}
   m_Layer: 0
   m_Name: EnemyShip3
   m_TagString: Enemy
@@ -196,10 +196,33 @@ MonoBehaviour:
   weaponHolderMid: {fileID: 5814730095240401917}
   weaponHolderRight: {fileID: 2308553075793665941}
   weaponHolderXRight: {fileID: 8329277492779715697}
+  interval: 0.025
   user: 0
+  missileRecoveryTime: 2.5
   bulletRecoveryTime: 0.5
   bulletTag: Bullet2
---- !u!114 &5814730095674468776
+  torpedoTag: 
+  missileTag: 
+  laserTag: 
+  laserBeamObject: {fileID: 0}
+--- !u!114 &960204839549836644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814730095674468769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f82b50b02df328745881c67d38d48cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 0.5
+  orbitRadius: 1
+  revolutionSpeed: 1
+  playerFollowingSpeed: 2.5
+  movementPattern: 2
+--- !u!114 &2052671341765665894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,19 +240,6 @@ MonoBehaviour:
   dodge: 0.5
   smoothing: 7.5
   tilt: 30
---- !u!114 &960204839549836644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5814730095674468769}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f82b50b02df328745881c67d38d48cd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 0.5
 --- !u!1 &7112688216651370691
 GameObject:
   m_ObjectHideFlags: 0

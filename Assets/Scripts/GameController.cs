@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public Text scoreText;
     public Text highScoreText;
     public Text powerUpTImeText;
+    public Text healthPointsText;
     public int score;
     public float initialWait = 1f;
 

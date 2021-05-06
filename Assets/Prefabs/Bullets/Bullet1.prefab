@@ -155,5 +155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f98a4ec4aceb804b87d72324ca5f4a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
+  rb: {fileID: 0}
+  damage: 2
   shotBy: 1
+  movementSpeed: 2
+  isHoming: 0
+  rotateSpeed: 0
+  detectionRange: 0

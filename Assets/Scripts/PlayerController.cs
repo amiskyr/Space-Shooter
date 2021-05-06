@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,8 +18,10 @@ public class PlayerController : MonoBehaviour
     public int health;
 
     public bool bulletsPowerUp;
-    public float powerUpTime = 10f;
+    public float powerUpTime = 15f;
     public WeaponType obtainedPowerUp;
+
+    public static event Action onWeaponSwitch;
 
     void Start()
     {
@@ -38,6 +41,7 @@ public class PlayerController : MonoBehaviour
             gameController.powerUpTImeText.text = $"Time Left: {powerUpTime.ToString("f0")}s ";
             if(powerUpTime <= 0)
             {
+                onWeaponSwitch?.Invoke();
                 bulletsPowerUp = false;
                 gameController.powerUpTImeText.text = "Time Left: 0s";
                 powerUpTime = 15f;
@@ -47,11 +51,12 @@ public class PlayerController : MonoBehaviour
         movementController.ReceiveTouchInput();
         if(bulletsPowerUp)
         {
+            onWeaponSwitch?.Invoke();
             weapon.ShootOnClick(obtainedPowerUp);
         }
         else
         {
-            weapon.ShootOnClick(WeaponType.Laser);
+            weapon.ShootOnClick(WeaponType.Missile);
         }
     }
 
@@ -88,6 +93,7 @@ public class PlayerController : MonoBehaviour
             {
                 health -= other.gameObject.GetComponent<BulletController>().damage;
             }
+            gameController.healthPointsText.text = $"HP: {health}";
             other.gameObject.SetActive(false);
         }
     }

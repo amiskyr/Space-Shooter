@@ -14,6 +14,8 @@ public class EnemyController : MonoBehaviour
     public float shootingInterval;
     public EnemyType enemyType;
 
+    public WeaponType currentWeapon;
+
     private void Awake()
     {
         gameController = GameController.Instance;
@@ -24,6 +26,10 @@ public class EnemyController : MonoBehaviour
 
     private void OnEnable()
     {
+        health = 10;
+
+        currentWeapon = (WeaponType)Random.Range(0, 4);
+
         if (enemyType == EnemyType.SpaceShip)
         {
             weapon = GetComponent<WeaponHandler>();
@@ -57,6 +63,24 @@ public class EnemyController : MonoBehaviour
             }
             other.gameObject.SetActive(false);
         }
+        if(other.gameObject.tag.Equals("LaserBeam") && other.gameObject.GetComponent<LaserBeamController>().shotBy == WeaponUser.Player)
+        {
+            if (health <= 0)
+            {
+                generalexplosion.transform.position = transform.position;
+                generalexplosion.Play();
+
+                UpdateScore();
+
+                audioManager.PlayAudio(0);
+
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                health -= other.GetComponent<LaserBeamController>().damage;
+            }
+        }
         if(other.gameObject.tag.Equals("Player"))
         {
             gameController.isGameOver = true;
@@ -86,7 +110,7 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyType == EnemyType.SpaceShip)
         {
-            weapon.ShootAutomatically();
+            weapon.ShootAutomatically(currentWeapon);
         }
     }
 

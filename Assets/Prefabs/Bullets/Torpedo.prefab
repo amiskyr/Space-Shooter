@@ -158,8 +158,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   damage: 10
-  movementSpeed: 0.5
   shotBy: 1
+  movementSpeed: 4
+  isHoming: 0
+  rotateSpeed: 0
+  detectionRange: 0
 --- !u!1001 &223506334919834119
 PrefabInstance:
   m_ObjectHideFlags: 0

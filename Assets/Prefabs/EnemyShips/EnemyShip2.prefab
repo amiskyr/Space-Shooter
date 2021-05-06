@@ -105,9 +105,15 @@ MonoBehaviour:
   weaponHolderMid: {fileID: 1218829087723672374}
   weaponHolderRight: {fileID: 6247393097845453038}
   weaponHolderXRight: {fileID: 3033726891205159529}
+  interval: 0.025
   user: 0
+  missileRecoveryTime: 2.5
   bulletRecoveryTime: 0.5
   bulletTag: Bullet2
+  torpedoTag: 
+  missileTag: 
+  laserTag: 
+  laserBeamObject: {fileID: 0}
 --- !u!114 &1218829086006061408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 0.25
+  orbitRadius: 1
+  revolutionSpeed: 1
+  movementPattern: 2
 --- !u!1 &1218829087723672375
 GameObject:
   m_ObjectHideFlags: 0
