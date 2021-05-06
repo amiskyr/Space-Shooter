@@ -49,7 +49,7 @@ public class ObjectPooler : MonoBehaviour
 
         poolDictionary[reqTag].Enqueue(objectToSpawn);
 
-        Debug.Log("Returned object to pool with tag: " + reqTag);
+        //Debug.Log("Returned object to pool with tag: " + reqTag);
 
         return objectToSpawn;
     }

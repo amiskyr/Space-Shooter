@@ -23,3 +23,16 @@ public enum InputType
     Touch,
     Keyboard
 }
+
+public enum EnemyType
+{
+    Hazard,
+    SpaceShip,
+    Boss
+}
+
+public enum WeaponUser
+{
+    Enemy,
+    Player
+}

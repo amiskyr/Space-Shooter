@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AsteroidController : MonoBehaviour
+public class EnemyShipMovementController : MonoBehaviour
 {
     private Rigidbody rb;
-    
-    public float tumble = 1f;
+
     public float movementSpeed = 1f;
 
     private void Awake()
@@ -14,13 +13,13 @@ public class AsteroidController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
-    {
-        rb.angularVelocity = Random.insideUnitSphere * tumble;
-        rb.velocity = -transform.forward * movementSpeed;
-    }
-
     private void OnEnable()
     {
+        MoveEnemyShip();
+    }
+
+    private void MoveEnemyShip()
+    {
+        rb.velocity = -transform.forward * movementSpeed;
     }
 }

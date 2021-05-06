@@ -5,7 +5,9 @@ using UnityEngine;
 public class Boundary : MonoBehaviour
 {
     private Camera mainCamera;
-    private Vector2 screenBounds;
+    
+    [HideInInspector]
+    public Vector2 screenBounds;
 
     private void Awake()
     {
@@ -15,18 +17,18 @@ public class Boundary : MonoBehaviour
     void Start()
     {
         screenBounds = mainCamera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, mainCamera.transform.position.z));
-        transform.localScale = new Vector3(screenBounds.x * 2, 0.5f, screenBounds.y * 2);
+        transform.localScale = new Vector3(screenBounds.x * 2, 0.1f, screenBounds.y * 1);
     }
 
-    private void OnTriggerExit(Collider collision)
+    private void OnTriggerExit(Collider other)
     {
-        if(collision.gameObject.CompareTag("Bullet"))
+        if(other.gameObject.CompareTag("Bullet"))
         {
-            collision.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
         }
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(other.gameObject.CompareTag("Enemy"))
         {
-            collision.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
         }
     }
 }

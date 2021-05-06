@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    private Rigidbody rb;
+    public Rigidbody rb;
 
+    public int damage = 1;
     public float movementSpeed;
+    public WeaponUser shotBy;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    private void OnEnable()
-    {
-        rb.velocity = transform.forward * movementSpeed;
-        //Invoke("DisableBullet", 5);
     }
 
     private void OnDisable()
@@ -24,11 +21,18 @@ public class BulletController : MonoBehaviour
         rb.velocity = Vector3.zero;
     }
 
-    void DisableBullet()
+    public void MoveBullet(WeaponUser user)
     {
-        if(gameObject.activeInHierarchy == true)
+        shotBy = user;
+        if (shotBy == WeaponUser.Player)
         {
-            gameObject.SetActive(false);
+            rb.velocity = transform.forward * movementSpeed;
+            //Debug.LogWarning("Bullet moving forward.");
+        }
+        else
+        {
+            rb.velocity = transform.forward * (movementSpeed);
+            //Debug.LogWarning("Bullet moving backward.");
         }
     }
 }

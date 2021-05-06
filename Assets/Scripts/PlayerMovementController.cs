@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovementController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     private PlayerController playerController;
     private Rigidbody rb;
@@ -18,8 +18,6 @@ public class MovementController : MonoBehaviour
 
     public float movementSpeed = 1f;
     public float tilt;
-
-    public InputType inputType;
 
     private void Awake()
     {
@@ -38,24 +36,7 @@ public class MovementController : MonoBehaviour
         zMax = screenBounds.y / 4;// - (screenBounds.y / 4);
     }
 
-    private void Update()
-    {
-        ReceiveTouchInput();
-    }
-
-    private void FixedUpdate()
-    {
-        if(inputType == InputType.Keyboard)
-        {
-            MoveByKey();
-        }
-        else
-        {
-            MoveByTouch();
-        }
-    }
-
-    private void MoveByKey()
+    public void MoveByKey()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
@@ -68,7 +49,7 @@ public class MovementController : MonoBehaviour
         rb.rotation = Quaternion.Euler(0f, 0f, rb.velocity.x * -tilt);
     }
 
-    private void MoveByTouch()
+    public void MoveByTouch()
     {
         if (isMoving)
         {
@@ -81,7 +62,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    private void ReceiveTouchInput()
+    public void ReceiveTouchInput()
     {
         if(!gameOver)
         {
