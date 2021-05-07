@@ -159,9 +159,9 @@ MonoBehaviour:
   rb: {fileID: 0}
   damage: 10
   shotBy: 1
-  movementSpeed: 2.5
+  movementSpeed: 1.5
   isHoming: 1
-  rotateSpeed: 25
+  rotateSpeed: 15
   detectionRange: 5
 --- !u!1001 &8369144672778935359
 PrefabInstance:

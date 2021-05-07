@@ -184,8 +184,7 @@ public class WeaponHandler : MonoBehaviour
         missileR.GetComponent<BulletController>().MoveBullet(currentUser);
     }
 
-    public void LaserAttack(WeaponUser currentuser
-        )
+    public void LaserAttack(WeaponUser currentuser)
     {
         GameObject laserBeam = ObjectPooler.Instance.GetPooledObject(laserTag, weaponHolderMid.position, weaponHolderMid.transform.rotation);
         
