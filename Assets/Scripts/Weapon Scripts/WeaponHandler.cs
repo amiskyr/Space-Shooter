@@ -164,7 +164,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void TorpedoAttack(WeaponUser currentUser)
     {
-        nextFire = Time.time + missileRecoveryTime / 2;
+        nextFire = Time.time + missileRecoveryTime;
 
         GameObject torpedoL = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderLeft.position, weaponHolderLeft.rotation);
         GameObject torpedoR = ObjectPooler.Instance.GetPooledObject(torpedoTag, weaponHolderRight.position, weaponHolderRight.rotation);
@@ -175,7 +175,7 @@ public class WeaponHandler : MonoBehaviour
 
     public void MissileAttack(WeaponUser currentUser)
     {
-        nextFire = Time.time + missileRecoveryTime / 2;
+        nextFire = Time.time + missileRecoveryTime;
 
         GameObject missileL = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderLeft.position, tiltedL);
         GameObject missileR = ObjectPooler.Instance.GetPooledObject(missileTag, weaponHolderRight.position, tiltedR);

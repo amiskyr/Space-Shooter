@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    private ParticleSystem generalexplosion;
+    private ParticleSystem generalExplosion;
     private ParticleSystem playerExplosion;
     private GameController gameController;
     private AudioManager audioManager;
     private WeaponHandler weapon;
+    public int maxHealth = 10;
 
-    public int health;
+    private int health;
     public float shootingInterval;
     public EnemyType enemyType;
 
@@ -20,13 +21,13 @@ public class EnemyController : MonoBehaviour
     {
         gameController = GameController.Instance;
         audioManager = AudioManager.Instance;
-        generalexplosion = gameController.generalExplosion;
+        generalExplosion = gameController.generalExplosion;
         playerExplosion = gameController.playerExplosion;
     }
 
     private void OnEnable()
     {
-        health = 10;
+        health = maxHealth;
 
         currentWeapon = (WeaponType)Random.Range(0, 4);
 
@@ -48,14 +49,7 @@ public class EnemyController : MonoBehaviour
         {
             if(health <= 0)
             {
-                generalexplosion.transform.position = transform.position;
-                generalexplosion.Play();
-
-                UpdateScore();
-
-                audioManager.PlayAudio(0);
-                
-                gameObject.SetActive(false);
+                Die();
             }
             else
             {
@@ -67,14 +61,7 @@ public class EnemyController : MonoBehaviour
         {
             if (health <= 0)
             {
-                generalexplosion.transform.position = transform.position;
-                generalexplosion.Play();
-
-                UpdateScore();
-
-                audioManager.PlayAudio(0);
-
-                gameObject.SetActive(false);
+                Die();
             }
             else
             {
@@ -89,15 +76,27 @@ public class EnemyController : MonoBehaviour
 
             other.gameObject.SetActive(false);
             
-            generalexplosion.transform.position = transform.position;
-            generalexplosion.Play();
-            
-            audioManager.PlayAudio(0);
-
             GameOverPrompt();
+            
+            generalExplosion.transform.position = transform.position;
+            generalExplosion.Play();
+
+            audioManager.PlayAudio(0);
 
             gameObject.SetActive(false);
         }
+    }
+
+    private void Die()
+    {
+        generalExplosion.transform.position = transform.position;
+        generalExplosion.Play();
+
+        UpdateScore();
+
+        audioManager.PlayAudio(0);
+
+        gameObject.SetActive(false);
     }
 
     private void UpdateScore()

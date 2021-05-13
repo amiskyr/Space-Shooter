@@ -13,12 +13,13 @@ public class PlayerController : MonoBehaviour
     private GameController gameController;
     private AudioManager audioManager;
     private ParticleSystem playerExplosion;
+    private int health;
 
+    public int maxHealth = 100;
     public InputType inputType;
-    public int health;
 
-    public bool bulletsPowerUp;
     public float powerUpTime = 15f;
+    public bool bulletsPowerUp;
     public WeaponType obtainedPowerUp;
 
     public static event Action onWeaponSwitch;
@@ -29,8 +30,8 @@ public class PlayerController : MonoBehaviour
         movementController = GetComponent<PlayerMovementController>();
         gameController = GameController.Instance;
         audioManager = AudioManager.Instance;
-        
         playerExplosion = gameController.playerExplosion;
+        health = maxHealth;
     }
 
     void Update()

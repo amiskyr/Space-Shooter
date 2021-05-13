@@ -175,9 +175,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a224fc25b2ec14ab648133876b2c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  maxHealth: 10
   shootingInterval: 0.25
   enemyType: 1
+  currentWeapon: 0
 --- !u!114 &5814730095674468775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,7 +204,6 @@ MonoBehaviour:
   torpedoTag: 
   missileTag: 
   laserTag: 
-  laserBeamObject: {fileID: 0}
 --- !u!114 &960204839549836644
 MonoBehaviour:
   m_ObjectHideFlags: 0

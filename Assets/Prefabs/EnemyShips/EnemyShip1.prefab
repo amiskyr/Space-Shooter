@@ -85,9 +85,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a224fc25b2ec14ab648133876b2c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  maxHealth: 10
   shootingInterval: 0.25
   enemyType: 1
+  currentWeapon: 0
 --- !u!114 &1218829086006061420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,9 +106,14 @@ MonoBehaviour:
   weaponHolderMid: {fileID: 1218829087723672374}
   weaponHolderRight: {fileID: 3629619986485269983}
   weaponHolderXRight: {fileID: 8589244502519313977}
+  interval: 0.025
   user: 0
+  missileRecoveryTime: 2.5
   bulletRecoveryTime: 0.5
   bulletTag: Bullet2
+  torpedoTag: 
+  missileTag: 
+  laserTag: 
 --- !u!114 &-7753714339591821154
 MonoBehaviour:
   m_ObjectHideFlags: 0

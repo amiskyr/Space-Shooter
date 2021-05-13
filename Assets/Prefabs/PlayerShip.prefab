@@ -273,13 +273,12 @@ MonoBehaviour:
   weaponHolderXRight: {fileID: 6165988757916853154}
   interval: 0.025
   user: 1
-  missileRecoveryTime: 0.75
+  missileRecoveryTime: 0.375
   bulletRecoveryTime: 0.1
   bulletTag: Bullet1
   torpedoTag: Torpedo
   missileTag: Missile
   laserTag: LaserBeam
-  laserBeamObject: {fileID: 0}
 --- !u!1001 &6165988757746772134
 PrefabInstance:
   m_ObjectHideFlags: 0

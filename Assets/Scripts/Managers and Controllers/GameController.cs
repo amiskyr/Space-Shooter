@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
     public float hazardSpawnInterval = 0.5f;
     public int hazardCount;
 
-    [Header("Enemy eave parameters")]
+    [Header("Enemy wave parameters")]
     public bool spawnEnemies = false;
     public float enemyWaveInterval = 5f;
     public float enemySpawnInterval = 2.5f;
