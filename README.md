@@ -5,5 +5,5 @@
  </h2>
 
  <h2> 
-  <a href="https://github.com/SKY-ROY/Space-Shooter/releases/download/v0.1/SpaceShooterAssignment.apk">APK Link</a>
+  <a href="https://github.com/SKY-ROY/Space-Shooter/releases/download/v0.1/SpaceShooterAssignment.apk">APK Download Link</a>
  </h2>
